@@ -1,0 +1,239 @@
+// Simple variables for styling
+$bg-color: #1a1a24;
+$text-color: #ffffff;
+$accent-color: #cc2233;
+$accent-hover: #aa1122;
+$font-stack: "JetBrains Mono", monospace;
+
+// A simple mixin for layout centering
+@mixin flex-center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+// Reset and body styles
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $bg-color;
+    color: $text-color;
+    font-family: $font-stack;
+    min-height: 100vh;
+    @include flex-center(column);
+    padding-inline: 20px;
+    padding-block: 30px;
+}
+
+header {
+    text-align: center;
+    margin-block-end: 20px;
+
+    h1 {
+        font-size: 2.2rem;
+        margin-block-end: 10px;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 1rem;
+        color: #aaaaaa;
+        font-weight: normal;
+    }
+}
+
+main {
+    width: 100%;
+    max-width: 600px;
+    @include flex-center(column);
+    gap: 20px;
+}
+
+.hangman-container {
+    width: 100%;
+    max-width: 300px;
+    height: 220px;
+    border: 2px dashed #444455;
+    border-radius: 8px;
+    position: relative;
+    @include flex-center;
+}
+
+.segments {
+    position: relative;
+    width: 150px;
+    height: 200px;
+}
+
+.segment-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    &.revealed {
+        opacity: 1;
+    }
+}
+
+// word slots
+.word-display {
+    font-size: 1.8rem;
+    letter-spacing: 8px;
+    margin-block: 15px;
+    text-align: center;
+
+    span {
+        display: inline-block;
+        // underline
+        border-bottom: 2px solid #888888;
+        margin-inline: 4px;
+        min-width: 25px;
+    }
+}
+
+.message-display {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-height: 25px;
+    text-align: center;
+
+    &.win {
+        color: #44bb66;
+    }
+
+    &.lose {
+        color: #ff4444;
+    }
+}
+
+.input-section {
+    width: 100%;
+    @include flex-center(column);
+    gap: 15px;
+    p {
+        font-size:1.0rem;
+        color: $accent-color;
+    }
+}
+
+.guess-form {
+    @include flex-center(row);
+    gap: 10px;
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    input {
+        width: 50px;
+        height: 35px;
+        text-align: center;
+        font-size: 1.1rem;
+        background-color: #2a2a35;
+        border: 1px solid #555566;
+        color: $text-color;
+        border-radius: 4px;
+        text-transform: uppercase;
+
+        &:focus {
+            outline: 2px solid $accent-color;
+        }
+    }
+
+    button {
+        padding-inline: 15px;
+        height: 35px;
+        background-color: $accent-color;
+        border: none;
+        color: $text-color;
+        cursor: pointer;
+        border-radius: 4px;
+        font-family: inherit;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: $accent-hover;
+        }
+
+        &:disabled {
+            background-color: #555566;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.keyboard {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 500px;
+}
+
+.key {
+    width: 32px;
+    height: 32px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background-color: #2a2a35;
+    color: $text-color;
+    border: 1px solid #444455;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover:not(:disabled) {
+        border-color: $accent-color;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    &.correct {
+        background-color: rgba(68, 187, 102, 0.2);
+        color: #44bb66;
+        border-color: #44bb66;
+    }
+
+    &.incorrect {
+        background-color: rgba(255, 68, 68, 0.2);
+        color: #ff4444;
+        border-color: #ff4444;
+    }
+}
+
+#reset-btn {
+    padding: 10px 20px;
+    background-color: $accent-color;
+    border: none;
+    color: $text-color;
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 4px;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $accent-hover;
+    }
+
+    &.hidden {
+        display: none;
+    }
+}
+
+footer {
+    margin-block-start: 30px;
+    font-size: 0.8rem;
+    color: #888888;
+}

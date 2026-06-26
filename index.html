@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <title>SlenderHang</title>
+    <meta name="application-name" content="SlenderHang" lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Jacob Lebl">
+
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="./css/game.css">
+
+    <script defer src="scripts/game.js"></script>
+
+</head>
+
+<body class="playing">
+<header>
+    <h1>SlenderHang</h1>
+    <h2 id="hint-display"></h2>
+</header>
+
+<main>
+    <!-- Slenderman Visuals -->
+    <div id="hangman-visual" class="hangman-container">
+        <div id="segment-container" class="segments">
+            <!-- Segments will be injected here via JS -->
+        </div>
+    </div>
+
+    <!-- Game State Display -->
+    <div class="game-controls">
+        <div id="word-display" class="word-display"></div>
+        <div id="message-display" class="message-display"></div>
+    </div>
+
+    <!-- Keyboard/Input Area -->
+    <div class="input-section">
+        <form id="guess-form" class="guess-form" autocomplete="off">
+            <label for="letter-input">Type a letter:</label>
+            <input type="text" id="letter-input" mafxlength="1" pattern="[a-zA-Z]">
+            <button type="submit" id="submit-guess-btn">Guess</button>
+        </form>
+        <p>you may also type outside the textbox</p>
+
+        <div id="keyboard" class="keyboard">
+            <!-- Letters will be injected here via JS -->
+        </div>
+    </div>
+    <button id="reset-btn" class="hidden">Play Again</button>
+
+</main>
+
+<footer class="game-footer">
+    <p>&#x1F12F; COPYLEFT 2026 Jacob Lebl - SlenderHang</p>
+</footer>
+
+</body>
+</html>
